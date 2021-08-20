@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class UserResource {
 		return ResponseEntity.ok().body(user);
 	}
 	
+	@CrossOrigin
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> saveUser(@RequestBody @Valid User user){
@@ -53,8 +55,7 @@ public class UserResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(
-			@PathVariable int id, 
+	public ResponseEntity<User> updateUser(@PathVariable int id, 
 			@RequestBody @Valid User user){
 		User updatedUser = userService.updateUser(id, user);
 		return ResponseEntity.ok().body(updatedUser);

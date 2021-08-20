@@ -20,7 +20,6 @@ import br.com.exerciciosspringboot.productwebservice.repositories.OrderItemRepos
 import br.com.exerciciosspringboot.productwebservice.repositories.OrderRepository;
 import br.com.exerciciosspringboot.productwebservice.repositories.ProductRepository;
 import br.com.exerciciosspringboot.productwebservice.repositories.UserRepository;
-import br.com.exerciciosspringboot.productwebservice.services.exceptions.ResourceNotFoundException;
 
 @Configuration
 @Profile("test")
@@ -77,5 +76,6 @@ public class TestConfiguration implements CommandLineRunner {
 		OrderItem orderItem4 = new OrderItem(order3, product4, 2, product4.getPrice()); 
 		orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
 		order1.getOrderItems().addAll(Arrays.asList(orderItem1, orderItem2));
+		orderRepository.save(order1);
 	}
 }
